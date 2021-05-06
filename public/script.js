@@ -1,3 +1,5 @@
+const { Body } = require('node-fetch');
+
 // THIS IS FOR AUTOMATED TESTING
 if (typeof module !== 'undefined') {
   global.$ = require('jquery')
@@ -22,9 +24,13 @@ $( document ).ready((() => {
       toggleAlertBox(true)
       toggleSubmit(true)
     }
-  })
+  });
 
-  // TODO: Handle submit
+    form.on("submit", async (event) => {
+      event.preventDefault();
+      await saveData(input.val(), textarea.val());
+      await getData();
+    });
 }))
 
 function formElementIsValid(element, minLength) {
@@ -47,11 +53,40 @@ function toggleSubmit(disable) {
 }
 
 async function getData() {
-  // TODO: Implement
+  //clear complete table
+  const tableBody = $(".table > tbody");
+  tableBody.empty();
+  //fetch table data
+  const response = await fetch("/api/shouts", {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const json = await response.json();
+  json.forEach((elem => {
+    tableBody.append(`<tr><td>${elem.id}</td><td>${elem.username}</td><td>${elem.message}</td></tr>`);
+  }))
 }
 
+
 async function saveData(username, message) {
-  // TODO: Implement
+    try{
+      await fetch("/api/shouts", {
+        method: 'post',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username, 
+          message,
+        }),
+      });
+      const json = await response.json();
+    } catch (e) {
+      console.error(e);
+    }     
 }
 
 // THIS IS FOR AUTOMATED TESTING
