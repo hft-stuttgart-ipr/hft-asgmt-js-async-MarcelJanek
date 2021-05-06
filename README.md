@@ -1,5 +1,4 @@
-![GitHub Classroom Workflow](https://github.com/hft-stuttgart-ipr/hft-asgmt-js-async-MarcelJanek/workflows/GitHub%20Classroom%20Workflow/badge.svg)](https://travis-ci.org/hft-stuttgart-ipr/hft-asgmt-js-async-USERNAME)
-
+![GitHub Classroom Workflow](https://github.com/hft-stuttgart-ipr/hft-asgmt-js-async-MarcelJanek/workflows/GitHub%20Classroom%20Workflow/badge.svg)]
 # hft-asgmt-js-async
 
 ## TODO
